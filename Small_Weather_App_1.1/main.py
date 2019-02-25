@@ -30,7 +30,7 @@ cache = Cache(app, config={'CACHE_TYPE': 'simple'})
 app.config['BABEL_DEFAULT_LOCALE'] = 'en'
 
 
-
+# klasa za validiranje korisnickog unosa
 class Logiranje(FlaskForm):
     username=StringField('Username',validators=[DataRequired])
     password=PasswordField('Password',validators=[DataRequired])
@@ -76,6 +76,7 @@ def index():
               {'name': 'Shanghai'}])
 
 # prognoza za odabrani grad
+#puni se lista data i data2,te se salje serveru zahtjev za requestom podataka
 @app.route("/result", methods=['POST'])
 def result():
     data = []
@@ -102,6 +103,7 @@ def result():
         error=error,data2=data2,forecast=forecast)
 
 #ruta na grafikon
+#interaktivni grafikon kontinenata,prikazuje zemlje u kojima su mjerena na app-u
 @app.route("/chart")
 def chart():
 
@@ -121,7 +123,7 @@ def chart():
 
     return render_template('chart.html', graph_data=graph_data)
 
-
+#funkcija zaduzena za prijevod
 @babel.localeselector
 def get_locale():
     if request.args.get('lang'):
