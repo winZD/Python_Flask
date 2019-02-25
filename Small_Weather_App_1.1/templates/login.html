@@ -1,0 +1,40 @@
+
+<link rel="stylesheet"  type="text/css"  href="{{ url_for('static', filename='css/style2.css') }}">
+
+
+
+
+<div class="login">
+    <div class="login-screen">
+        <div class="app-title">
+
+            <h1>Login</h1>
+            {% if error %}
+                <p><strong style="color: red">Error:</strong> {{ error }}
+            {% endif %}
+        </div>
+
+
+
+        <form action="/login" method="POST">
+            <div class="login-form">
+                {{ form.csrf_token }}
+                <div class="control-group">
+
+                    {{ form.username.label }}
+                    {{ form.username }}
+                   
+                </div>
+                <div class="control-group">
+                    {{ form.password.label }}
+                    {{ form.password }}
+                </div>
+                <input type="submit" value="Log in" class="btn">
+
+
+        </form>
+
+        
+    </div>
+</div>
+</div>
