@@ -1,0 +1,96 @@
+{% extends "starting.html" %}
+
+
+<body>
+
+    {% block content %}
+    </nav>
+    <div class="container">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1>Weather</h1>
+                {% for d in data %}
+                {% set my_string = "static/img/" + d['weather'][0]['icon']+ ".svg" %}
+                <h1>
+                    <img src="{{ my_string }}" class="svg" fill="" height="100" vertical-align="middle" width="100">
+                    <h1>
+
+
+                        <h1>{{ d['name'] }}, {{ d['sys']['country'] }}</h1>
+
+                        <h1> Lat: {{d['coord']['lat']}}°, Lon: {{d['coord']['lon']}}°</h1>
+
+
+
+                        <h1>{{ d['main']['temp']|round|int}} °C</h1>
+
+                        <h1>{{ d['main']['pressure']|float }} hPa</h1>
+                        {% endfor %}
+
+
+
+
+                        <ul>
+                            <form class="graf" action="{{url_for('log')}}">
+
+                                <button type="submit" class="btn">Chart</button>
+
+
+
+                            </form>
+
+                            </form>
+
+
+                        </ul>
+
+                        <table class="btn" style="color: grey">
+
+                            {% for f in forecast[::8] %}
+
+                            {% set my_string = "static/img/" + f['weather'][0]['icon']+ ".svg" %}
+
+
+
+                            <tr>
+                                <th>Date</th>
+                                <th> Weather description </th>
+                                <th> Min temp </th>
+                                <th> Max temp </th>
+                                <th> Humidity </th>
+                                <th> Wind speed </th>
+
+
+
+
+                            </tr>
+                            <tr>
+
+                                <td><strong>{{f.dt_txt}} → </strong></td>
+
+                                <td>{{f.weather[0].description}}
+                                    <img src="{{ my_string }}" class="svg" fill="black" height="50"
+                                        vertical-align="middle" width="50"></td>
+
+                                <td>{{f.main.temp_min|round|int}}°C</td>
+                                <td>{{f.main.temp_max|round|int}}°C</td>
+                                <td>{{f.main.humidity}}%</td>
+                                <td>{{f.wind.speed}} km/h</td>
+
+
+                            </tr>
+
+
+
+                            {% endfor %}
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}
+</body>
