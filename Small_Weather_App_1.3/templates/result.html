@@ -46,13 +46,6 @@
                         </ul>
 
                         <table class="btn" style="color: grey">
-
-                            {% for f in forecast[::8] %}
-
-                            {% set my_string = "static/img/" + f['weather'][0]['icon']+ ".svg" %}
-
-
-
                             <tr>
                                 <th>Date</th>
                                 <th> Weather description </th>
@@ -65,6 +58,14 @@
 
 
                             </tr>
+
+                            {% for f in forecast[::8] %}
+
+                            {% set my_string = "static/img/" + f['weather'][0]['icon']+ ".svg" %}
+
+
+
+                           
                             <tr>
 
                                 <td><strong>{{f.dt_txt}} → </strong></td>
